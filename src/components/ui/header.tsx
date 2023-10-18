@@ -1,3 +1,5 @@
+"use client"
+
 import { HomeIcon, LogInIcon, MenuIcon, PercentIcon, ShoppingCart } from "lucide-react";
 import { Button } from "./button";
 import { Card } from "./card";
@@ -9,8 +11,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./sheet";
+import { signIn } from "next-auth/react";
 
 const Header = () => {
+
+  const handleLogIn = async () => {
+    await signIn()
+  }
   return (
     <Card className="flex justify-between p-[1.875rem]">
       <Sheet>
@@ -23,7 +30,11 @@ const Header = () => {
           <SheetHeader className="text-left text-lg font-semibold">
               Menu
           </SheetHeader>
-          <Button variant="outline" className="w-full justify-start gap-2">
+          <Button 
+            variant="outline" 
+            className="w-full justify-start gap-2"
+            onClick={handleLogIn}          
+          >
             <LogInIcon size={16} />
             Fazer Login
           </Button>
