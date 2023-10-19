@@ -14,5 +14,3 @@ if (process.env.NODE_ENV === "production") {
   }
   prisma = global.cachedPrisma;
 }
-
-export const prismaClient = prisma;
