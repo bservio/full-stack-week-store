@@ -30,7 +30,7 @@ export default async function Home() {
     }
   })
   return (
-    <div>
+    <div className='py-10'>
 
       <PromoBanner 
         src="/banner-55off-home.png"
