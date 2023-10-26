@@ -17,7 +17,7 @@ const ProductImage = ({ name, imageUrls }: ProductImageProps) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex h-[380px] w-full items-center justify-center bg-[#242424]">
+      <div className="flex h-[380px] w-full items-center justify-center bg-accent">
         <Image
           src={currentImage}
           alt={name}
@@ -34,11 +34,11 @@ const ProductImage = ({ name, imageUrls }: ProductImageProps) => {
         {imageUrls.map((imageUrl) => (
           <button
             key={imageUrl}
-            className={`flex h-[100px] items-center justify-center rounded-lg bg-[#242424]
-            ${
-              imageUrl === currentImage &&
-              "border-2 border-solid border-primary"
-            }
+            className={`flex h-[100px] items-center justify-center rounded-lg bg-accent
+                ${
+                  imageUrl === currentImage &&
+                  "border-2 border-solid border-primary"
+                }
             `}
             onClick={() => handleImageClick(imageUrl)}
           >
@@ -49,9 +49,6 @@ const ProductImage = ({ name, imageUrls }: ProductImageProps) => {
               width={0}
               sizes="100vw"
               className="h-auto max-h-[70%] w-auto max-w-[80%]"
-              style={{
-                objectFit: "contain",
-              }}
             />
           </button>
         ))}
