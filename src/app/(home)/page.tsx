@@ -1,38 +1,36 @@
-import Image from 'next/image'
-import Categories from './components/categories';
-import ProductList from './components/product-list';
-import { prismaClient } from '@/lib/prisma';
-import PromoBanner from './components/promo-banner';
-import SectionTitle from './components/section-title';
+import Categories from "./components/categories";
+import ProductList from "../../components/ui/product-list";
+import { prismaClient } from "@/lib/prisma";
+import PromoBanner from "./components/promo-banner";
+import SectionTitle from "./components/section-title";
 
 export default async function Home() {
   const deals = await prismaClient.product.findMany({
     where: {
       discountPercentage: {
         gt: 0,
-      }
-    }
+      },
+    },
   });
 
   const keyboards = await prismaClient.product.findMany({
     where: {
       category: {
-        slug: "keyboards"
-      }
-    }
-  })
+        slug: "keyboards",
+      },
+    },
+  });
 
   const mouses = await prismaClient.product.findMany({
     where: {
       category: {
-        slug: "mouses"
-      }
-    }
-  })
+        slug: "mouses",
+      },
+    },
+  });
   return (
-    <div className='py-10'>
-
-      <PromoBanner 
+    <div className="py-10">
+      <PromoBanner
         src="/banner-55off-home.png"
         alt="até 55% de desconto, só esse mês"
       />
@@ -43,7 +41,7 @@ export default async function Home() {
         <SectionTitle>Ofertas</SectionTitle>
         <ProductList products={deals} />
       </div>
-      <PromoBanner 
+      <PromoBanner
         src="/banner-mouses-home.png"
         alt="até 55% de desconto em mouses"
       />
@@ -51,7 +49,7 @@ export default async function Home() {
         <SectionTitle>Teclados</SectionTitle>
         <ProductList products={keyboards} />
       </div>
-      <PromoBanner 
+      <PromoBanner
         src="/banner-fones-home.png"
         alt="até 20% de desconto em fones"
       />
@@ -60,5 +58,5 @@ export default async function Home() {
         <ProductList products={mouses} />
       </div>
     </div>
-  )
+  );
 }
