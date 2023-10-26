@@ -8,6 +8,7 @@ interface CartItemProps {
 }
 
 const CartItem = ({ product }: CartItemProps) => {
+  const handleDecreaseProductQuantityClick = () => {};
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -41,7 +42,12 @@ const CartItem = ({ product }: CartItemProps) => {
           </div>
 
           <div className="flex items-center gap-1">
-            <Button size="icon" variant="outline" className="h-8 w-8">
+            <Button
+              size="icon"
+              variant="outline"
+              className="h-8 w-8"
+              onClick={handleDecreaseProductQuantityClick}
+            >
               <ChevronLeftIcon size={16} />
             </Button>
 
