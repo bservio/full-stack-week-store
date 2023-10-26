@@ -4,7 +4,7 @@ import { Product } from "@prisma/client";
 import { ReactNode, createContext, useState } from "react";
 
 interface CartProduct extends Product {
-  quantity: number;
+  productQuantity: number;
 }
 
 interface ICartContext {
