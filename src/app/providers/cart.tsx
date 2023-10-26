@@ -1,9 +1,10 @@
 "use client";
 
-import { Product } from "@prisma/client";
+import { ProductWithTotalPrice } from "@/helpers/products";
+
 import { ReactNode, createContext, useState } from "react";
 
-interface CartProduct extends Product {
+export interface CartProduct extends ProductWithTotalPrice {
   productQuantity: number;
 }
 
@@ -27,6 +28,30 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<CartProduct[]>([]);
 
   const addProductToCart = (product: CartProduct) => {
+    //verificar se o produto já está no carrinho
+    const productIsAlreadyOnCart = products.some(
+      (cartProduct) => cartProduct.id === product.id,
+    );
+
+    //se já estiver, adicionar a quantidade à quantidade já existente no carrinho
+    if (productIsAlreadyOnCart) {
+      setProducts((prev) =>
+        prev.map((cartProduct) => {
+          if (cartProduct.id === product.id) {
+            return {
+              ...cartProduct,
+              productQuantity:
+                cartProduct.productQuantity + product.productQuantity,
+            };
+          }
+          return cartProduct;
+        }),
+      );
+
+      return;
+    }
+
+    //senão, adicione o produto à lista
     setProducts((prev) => [...prev, product]);
   };
 

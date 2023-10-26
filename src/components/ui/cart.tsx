@@ -2,12 +2,14 @@ import { CartContext } from "@/app/providers/cart";
 import { useContext } from "react";
 import { Badge } from "./badge";
 import { ShoppingCartIcon } from "lucide-react";
+import CartItem from "./cart-item";
+import { computeProductTotalPrice } from "@/helpers/products";
 
 const Cart = () => {
   const { products } = useContext(CartContext);
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <Badge
         className="w-fit gap-1 border-2 border-primary px-3 py-[0.375rem] text-base uppercase"
         variant="outline"
@@ -18,7 +20,10 @@ const Cart = () => {
 
       {/* RENDERIZAR OS PRODUTOS */}
       {products.map((product) => (
-        <h1 key={product.id}>{product.name}</h1>
+        <CartItem
+          key={product.id}
+          product={computeProductTotalPrice(product as any) as any}
+        />
       ))}
     </div>
   );
