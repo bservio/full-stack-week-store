@@ -1,4 +1,4 @@
-import { CartContext } from "@/app/providers/cart";
+import { CartContext } from "@/providers/cart";
 import { useContext } from "react";
 import { Badge } from "./badge";
 import { ShoppingCartIcon } from "lucide-react";

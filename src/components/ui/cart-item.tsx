@@ -1,4 +1,4 @@
-import { CartProduct } from "@/app/providers/cart";
+import { CartProduct } from "@/providers/cart";
 import Image from "next/image";
 import { Button } from "./button";
 import { ChevronLeftIcon, ChevronRightIcon, Trash2Icon } from "lucide-react";
