@@ -9,13 +9,22 @@ interface CartItemProps {
 }
 
 const CartItem = ({ product }: CartItemProps) => {
-  const { decreaseProductQuantity, increaseProductQuantity } =
-    useContext(CartContext);
+  const {
+    decreaseProductQuantity,
+    increaseProductQuantity,
+    removeProductFromCart,
+  } = useContext(CartContext);
+
   const handleDecreaseProductQuantityClick = () => {
     decreaseProductQuantity(product.id);
   };
+
   const handleIncreaseProductQuantityClick = () => {
     increaseProductQuantity(product.id);
+  };
+
+  const handleRemoveProductClick = () => {
+    removeProductFromCart(product.id);
   };
 
   return (
@@ -74,7 +83,12 @@ const CartItem = ({ product }: CartItemProps) => {
         </div>
       </div>
 
-      <Button size="icon" variant="outline" className="h-8 w-8">
+      <Button
+        size="icon"
+        variant="outline"
+        className="h-8 w-8"
+        onClick={handleRemoveProductClick}
+      >
         <Trash2Icon size={16} />
       </Button>
     </div>
